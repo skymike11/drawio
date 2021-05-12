@@ -1,9 +1,15 @@
-<mxfile host="app.diagrams.net" modified="2021-05-12T14:59:27.845Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36" etag="2pHwHsdRqcHTzFs6TFBr" version="14.6.11" type="github">
+<mxfile host="app.diagrams.net" modified="2021-05-12T15:53:11.329Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36" etag="4tJUe9MCg75ID905KRAK" version="14.6.11" type="github">
   <diagram id="lHUfotGmLh88hEkfxTwz" name="第 1 页">
-    <mxGraphModel dx="946" dy="590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1577" dy="983" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="5d9FrAUT32Lfvnw-ttjD-71" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="294" y="1140" width="1496" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="5d9FrAUT32Lfvnw-ttjD-69" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="282.71" y="290" width="1276" height="500" as="geometry" />
+        </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-56" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="5d9FrAUT32Lfvnw-ttjD-46" target="5d9FrAUT32Lfvnw-ttjD-57">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1800" y="1760" as="targetPoint" />
@@ -192,16 +198,16 @@
           <mxGeometry x="537.5" y="130" width="195" height="20" as="geometry" />
         </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-2" value="&lt;span style=&quot;font-size: 14px&quot;&gt;业务场景二： 超卖超买等库存处理异常&lt;/span&gt;" style="dashed=0;html=1;fillColor=#F0F2F5;strokeColor=none;align=center;rounded=1;arcSize=10;fontColor=#3384FF;fontStyle=1;fontSize=11;shadow=0" vertex="1" parent="1">
-          <mxGeometry x="530.6" y="920" width="242.5" height="20" as="geometry" />
+          <mxGeometry x="537.5" y="835" width="242.5" height="20" as="geometry" />
         </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-4" value="&lt;font face=&quot;pingfang sc, microsoft yahei, helvetica neue, helvetica, arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 14px ; background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;b&gt;出现库存异常，基本是在资源竞争上产生问题的，在CQRS 架构下的三步措施&lt;br&gt;1. 一个Command 只修改一个聚合根，但如果一个Command 要修改多个聚合根，就去控制它们的事务&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(77 , 77 , 77) ; font-family: , &amp;#34;sf ui text&amp;#34; , &amp;#34;arial&amp;#34; , &amp;#34;pingfang sc&amp;#34; , &amp;#34;hiragino sans gb&amp;#34; , &amp;#34;microsoft yahei&amp;#34; , &amp;#34;wenquanyi micro hei&amp;#34; , sans-serif , &amp;#34;simhei&amp;#34; , &amp;#34;simsun&amp;#34; ; font-size: 16px ; background-color: rgb(255 , 255 , 255)&quot;&gt;缩小事务的范围，确保一个事务一次只涉及一条记录的修改。也就是做到，只有单个聚合根的修改才是事务的, 通过Saga 来保证最终一致性&lt;br&gt;&lt;/span&gt;&lt;font face=&quot;pingfang sc, microsoft yahei, helvetica neue, helvetica, arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 14px ; background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;b&gt;&lt;br&gt;2. 对修改同一个聚合根的Command 进行排队，确保消费的顺序性&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(77 , 77 , 77) ; font-family: , &amp;#34;sf ui text&amp;#34; , &amp;#34;arial&amp;#34; , &amp;#34;pingfang sc&amp;#34; , &amp;#34;hiragino sans gb&amp;#34; , &amp;#34;microsoft yahei&amp;#34; , &amp;#34;wenquanyi micro hei&amp;#34; , sans-serif , &amp;#34;simhei&amp;#34; , &amp;#34;simsun&amp;#34; ; font-size: 16px ; background-color: rgb(255 , 255 , 255)&quot;&gt;根据聚合根的ID的hashcode进行路由，发送到指定分区的kafka，让指定service/线程处理同一分区的Command&lt;br&gt;&lt;/span&gt;&lt;font face=&quot;pingfang sc, microsoft yahei, helvetica neue, helvetica, arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 14px ; background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;b&gt;&lt;br&gt;3. 保证Command 和Event 的幂等性 *&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(77 , 77 , 77) ; font-family: , &amp;#34;sf ui text&amp;#34; , &amp;#34;arial&amp;#34; , &amp;#34;pingfang sc&amp;#34; , &amp;#34;hiragino sans gb&amp;#34; , &amp;#34;microsoft yahei&amp;#34; , &amp;#34;wenquanyi micro hei&amp;#34; , sans-serif , &amp;#34;simhei&amp;#34; , &amp;#34;simsun&amp;#34; ; font-size: 16px ; background-color: rgb(255 , 255 , 255)&quot;&gt;Command 的幂等：&lt;br&gt;我们要保证Command不能被重复执行&lt;br&gt;&lt;br&gt;Event 的幂等：&lt;/span&gt;&lt;font face=&quot;pingfang sc, microsoft yahei, helvetica neue, helvetica, arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 14px ; background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="530.6" y="955" width="550" height="290" as="geometry" />
+          <mxGeometry x="537.5" y="870" width="550" height="290" as="geometry" />
         </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-8" value="② 发送 Create Command" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="1100" y="1445" width="150" height="20" as="geometry" />
         </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-11" value="&lt;span style=&quot;font-size: 14px&quot;&gt;用户提交订单&lt;/span&gt;" style="dashed=0;html=1;fillColor=#F0F2F5;strokeColor=none;align=center;rounded=1;arcSize=10;fontColor=#3384FF;fontStyle=1;fontSize=11;shadow=0" vertex="1" parent="1">
-          <mxGeometry x="330" y="1470" width="60" height="20" as="geometry" />
+          <mxGeometry x="360" y="1470" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="5d9FrAUT32Lfvnw-ttjD-14" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a978d;" vertex="1" parent="1">
           <mxGeometry x="1339.5" y="1345" width="138.68" height="90" as="geometry" />
